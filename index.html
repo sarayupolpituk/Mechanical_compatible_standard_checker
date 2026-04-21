@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piping & Fitting Standard Compatibility</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1117;
+  --bg2:#181c27;
+  --bg3:#1e2333;
+  --border:#2a2f42;
+  --border2:#363c54;
+  --text:#e8eaf2;
+  --text2:#8b90a8;
+  --text3:#555b73;
+  --accent:#4f8ef7;
+  --accent2:#3a6fd4;
+  --ca-bg:#0e1e3a;--ca-bg2:#152848;--ca-hd:#1a3260;--ca-tx:#7bb3f7;--ca-hd-tx:#4f8ef7;
+  --cg-bg:#0d2018;--cg-bg2:#132a1e;--cg-hd:#1a3825;--cg-tx:#6dba8a;--cg-hd-tx:#4aab70;
+  --cj-bg:#2a150e;--cj-bg2:#361a10;--cj-hd:#4a2214;--cj-tx:#e08a6a;--cj-hd-tx:#d4654a;
+  --cd-bg:#1a1040;--cd-bg2:#221550;--cd-hd:#2d1c6a;--cd-tx:#9b8de8;--cd-hd-tx:#7c6cd4;
+  --ci-bg:#2a1e06;--ci-bg2:#362508;--ci-hd:#4a320a;--ci-tx:#d4a74a;--ci-hd-tx:#c08a20;
+  --radius:8px;--radius-lg:12px;--radius-xl:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
+
+/* ─── HEADER ─── */
+header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:16px;height:16px;fill:white}
+.logo-text{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.logo-sub{font-size:11px;color:var(--text2);font-family:'DM Mono',monospace;letter-spacing:.04em}
+.header-right{display:flex;align-items:center;gap:8px}
+.std-pill{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:500;font-family:'DM Mono',monospace;letter-spacing:.05em}
+.sp-a{background:var(--ca-bg2);color:var(--ca-tx);border:1px solid var(--ca-hd)}
+.sp-g{background:var(--cg-bg2);color:var(--cg-tx);border:1px solid var(--cg-hd)}
+.sp-j{background:var(--cj-bg2);color:var(--cj-tx);border:1px solid var(--cj-hd)}
+.sp-d{background:var(--cd-bg2);color:var(--cd-tx);border:1px solid var(--cd-hd)}
+.sp-i{background:var(--ci-bg2);color:var(--ci-tx);border:1px solid var(--ci-hd)}
+
+/* ─── LAYOUT ─── */
+.page{max-width:1100px;margin:0 auto;padding:32px 24px 64px}
+.section-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ─── CATEGORY TABS ─── */
+.cat-strip{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+.cat-btn{padding:7px 16px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;display:flex;align-items:center;gap:6px}
+.cat-btn:hover{border-color:var(--accent);color:var(--text);background:rgba(79,142,247,.08)}
+.cat-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cat-btn .icon{font-size:13px}
+
+/* ─── CONTROL PANEL ─── */
+.ctrl-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:20px 24px;margin-bottom:28px}
+.ctrl-grid{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:6px;flex:1;min-width:130px}
+.field label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-family:'DM Mono',monospace}
+.field select{height:38px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--bg3);color:var(--text);padding:0 12px;font-size:13px;width:100%;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%238b90a8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,142,247,.15)}
+.field select option{background:var(--bg2)}
+.sec-divider{flex-basis:100%;display:flex;align-items:center;gap:10px;margin:4px 0}
+.sec-divider span{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-family:'DM Mono',monospace;white-space:nowrap}
+.sec-divider::before,.sec-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-divider::before{display:none}
+.btn-group{display:flex;gap:8px;padding-top:20px;flex-shrink:0}
+.btn-go{height:38px;padding:0 22px;border-radius:var(--radius);border:none;background:var(--accent);color:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+.btn-go:hover{background:var(--accent2)}
+.btn-rst{height:38px;padding:0 16px;border-radius:var(--radius);border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-rst:hover{border-color:var(--border);color:var(--text)}
+
+/* ─── SUMMARY CARDS ─── */
+.sc-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.sc{flex:1;min-width:100px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 16px}
+.sc-l{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:4px}
+.sc-v{font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.01em}
+.sc-s{font-size:11px;color:var(--text2);margin-top:2px;font-family:'DM Mono',monospace}
+
+/* ─── LEGEND ─── */
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.leg-i{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500}
+.leg-d{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+/* ─── TABLE ─── */
+.tbl-wrap{border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+thead tr{background:var(--bg3)}
+th{padding:11px 12px;font-size:10px;font-weight:500;text-align:center;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:.06em;font-family:'DM Mono',monospace}
+th.rl{text-align:left;background:var(--bg2);color:var(--text3);width:19%;border-right:1px solid var(--border)}
+td{padding:9px 12px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:middle;word-break:break-word;text-align:center;font-family:'DM Mono',monospace;font-size:11px}
+tr:last-child td{border-bottom:none}
+tr.sec-row td{background:var(--bg);font-size:10px;letter-spacing:.06em;color:var(--accent);padding:5px 12px;text-transform:uppercase;font-family:'DM Mono',monospace;text-align:left}
+td.rl{text-align:left;font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;background:var(--bg2);border-right:1px solid var(--border);font-family:'DM Mono',monospace}
+tr:hover td:not(.rl){filter:brightness(1.07)}
+.ca{background:var(--ca-bg);color:var(--ca-tx)}
+.cg{background:var(--cg-bg);color:var(--cg-tx)}
+.cj{background:var(--cj-bg);color:var(--cj-tx)}
+.cd{background:var(--cd-bg);color:var(--cd-tx)}
+.ci{background:var(--ci-bg);color:var(--ci-tx)}
+th.ca{background:var(--ca-hd);color:var(--ca-hd-tx)}
+th.cg{background:var(--cg-hd);color:var(--cg-hd-tx)}
+th.cj{background:var(--cj-hd);color:var(--cj-hd-tx)}
+th.cd{background:var(--cd-hd);color:var(--cd-hd-tx)}
+th.ci{background:var(--ci-hd);color:var(--ci-hd-tx)}
+.badge{display:inline-block;padding:1px 6px;border-radius:20px;font-size:9px;font-weight:500;margin-left:4px;background:rgba(255,255,255,.1);color:inherit;font-family:'DM Mono',monospace}
+.b-match{background:rgba(74,171,112,.25);color:#6dba8a}
+.b-near{background:rgba(212,167,74,.2);color:#d4a74a}
+.b-check{background:rgba(224,138,106,.2);color:#e08a6a}
+.note{font-size:11px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace;line-height:1.6;padding:0 2px}
+.hint{font-size:13px;color:var(--text3);padding:2.5rem 0;text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;gap:8px}
+
+/* ─── REFERENCE TABLES ─── */
+.ref-section{margin-top:56px}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-bottom:20px}
+.ref-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden}
+.ref-card-hd{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.ref-card-hd .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ref-card-title{font-size:12px;font-weight:600;letter-spacing:.02em}
+.ref-card-sub{font-size:10px;color:var(--text3);margin-left:auto;font-family:'DM Mono',monospace}
+.ref-tbl{width:100%;border-collapse:collapse}
+.ref-tbl th{padding:7px 12px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);background:var(--bg3);border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;text-align:left;font-weight:500}
+.ref-tbl td{padding:7px 12px;font-size:11px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--text2)}
+.ref-tbl tr:last-child td{border-bottom:none}
+.ref-tbl tr:hover td{background:var(--bg3);color:var(--text)}
+.ref-tbl td.hi{color:var(--accent)}
+.ref-tbl td.warn{color:var(--cj-tx)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px 32px;text-align:center;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 16 16"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z"/></svg></div>
+    <div>
+      <div class="logo-text">PipingStd</div>
+      <div class="logo-sub">Cross-standard compatibility reference</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="std-pill sp-a">ANSI/ASME</span>
+    <span class="std-pill sp-g">GB</span>
+    <span class="std-pill sp-j">JIS</span>
+    <span class="std-pill sp-d">DIN EN</span>
+    <span class="std-pill sp-i">ISO</span>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- Category selector -->
+  <div class="section-title">Component category</div>
+  <div class="cat-strip" id="catStrip"></div>
+
+  <!-- Controls -->
+  <div class="section-title">Parameters</div>
+  <div class="ctrl-panel">
+    <div class="ctrl-grid" id="ctrlRow"></div>
+  </div>
+
+  <!-- Result -->
+  <div class="section-title">Standard comparison</div>
+  <div id="out">
+    <div class="hint">&#9432; Select a component category and fill in the parameters above, then click Compare.</div>
+  </div>
+
+  <!-- Reference tables -->
+  <div class="ref-section">
+    <div class="section-title">Reference tables</div>
+
+    <div class="ref-grid">
+
+      <!-- DN / NPS -->
+      <div class="ref-card">
+        <div class="ref-card-hd">
+          <div class="dot" style="background:#4f8ef7"></div>
+          <div class="ref-card-title">DN ↔ NPS size chart</div>
+          <div class="ref-card-sub">ASME B36.10M / ISO 4200</div>
+        </div>
+        <table class="ref-tbl">
+          <thead><tr><th>DN</th><th>NPS</th><th>OD (mm)</th><th>OD (inch)</th></tr></thead>
+          <tbody id="refDnNps"></tbody>
+        </table>
+      </div>
+
+      <!-- Class / PN -->
+      <div class="ref-card">
+        <div class="ref-card-hd">
+          <div class="dot" style="background:#d4a74a"></div>
+          <div class="ref-card-title">Pressure class ↔ PN</div>
+          <div class="ref-card-sub">ASME B16.5 / EN 1092-1</div>
+        </div>
+        <table class="ref-tbl">
+          <thead><tr><th>ASME class</th><th>PN (approx)</th><th>Max bar (CS, RT)</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td class="hi">Class 150</td><td>PN 20</td><td>19.6</td><td>General service</td></tr>
+            <tr><td class="hi">Class 300</td><td>PN 50</td><td>51.1</td><td>Med. pressure</td></tr>
+            <tr><td class="hi">Class 600</td><td>PN 110</td><td>102.1</td><td>High pressure</td></tr>
+            <tr><td class="hi">Class 900</td><td>PN 150</td><td>153.2</td><td>High pressure</td></tr>
+            <tr><td class="hi">Class 1500</td><td>PN 260</td><td>255.3</td><td>Very high</td></tr>
+            <tr><td class="hi">Class 2500</td><td>PN 420</td><td>425.5</td><td>Ultra high</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Schedule wall thickness DN100 sample -->
+      <div class="ref-card">
+        <div class="ref-card-hd">
+          <div class="dot" style="background:#6dba8a"></div>
+          <div class="ref-card-title">Schedule wall thickness (DN100 / NPS 4")</div>
+          <div class="ref-card-sub">OD = 114.3 mm</div>
+        </div>
+        <table class="ref-tbl">
+          <thead><tr><th>Schedule</th><th>Wall (inch)</th><th>Wall (mm)</th><th>ID (mm)</th></tr></thead>
+          <tbody>
+            <tr><td>SCH 5S</td><td>0.109"</td><td>2.77</td><td>108.8</td></tr>
+            <tr><td>SCH 10S</td><td>0.120"</td><td>3.05</td><td>108.2</td></tr>
+            <tr><td>SCH 40 (STD)</td><td>0.237"</td><td>6.02</td><td>102.3</td></tr>
+            <tr><td>SCH 60</td><td>0.281"</td><td>7.14</td><td>100.0</td></tr>
+            <tr><td>SCH 80 (XS)</td><td>0.337"</td><td>8.56</td><td>97.2</td></tr>
+            <tr><td>SCH 120</td><td>0.438"</td><td>11.13</td><td>92.0</td></tr>
+            <tr><td>SCH 160</td><td>0.531"</td><td>13.49</td><td>87.3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Material equivalency -->
+      <div class="ref-card">
+        <div class="ref-card-hd">
+          <div class="dot" style="background:#9b8de8"></div>
+          <div class="ref-card-title">Material grade equivalency</div>
+          <div class="ref-card-sub">Carbon & alloy steel</div>
+        </div>
+        <table class="ref-tbl">
+          <thead><tr><th>ASTM/ASME</th><th>GB (China)</th><th>JIS</th><th>DIN EN</th></tr></thead>
+          <tbody>
+            <tr><td class="hi">SA-106 Gr.B</td><td>20G</td><td>STPG410</td><td>P265GH</td></tr>
+            <tr><td class="hi">A335 P11</td><td>15CrMo</td><td>STPA23</td><td>13CrMo4-5</td></tr>
+            <tr><td class="hi">A335 P22</td><td>12Cr2Mo</td><td>STPA24</td><td>10CrMo9-10</td></tr>
+            <tr><td class="hi">A335 P91</td><td>10Cr9Mo1VNbN</td><td>STPA28</td><td>X10CrMoVNb9-1</td></tr>
+            <tr><td class="hi">A312 TP304</td><td>0Cr18Ni9</td><td>SUS304TP</td><td>X5CrNi18-10</td></tr>
+            <tr><td class="hi">A312 TP316</td><td>0Cr17Ni12Mo2</td><td>SUS316TP</td><td>X5CrNiMo17-12-2</td></tr>
+            <tr><td class="hi">A105</td><td>20# / Q235</td><td>SFVC2A</td><td>P250GH</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Fitting standards reference -->
+      <div class="ref-card">
+        <div class="ref-card-hd">
+          <div class="dot" style="background:#e08a6a"></div>
+          <div class="ref-card-title">Fitting dimension standards</div>
+          <div class="ref-card-sub">Butt-weld fittings</div>
+        </div>
+        <table class="ref-tbl">
+          <thead><tr><th>Component</th><th>ASME</th><th>GB</th><th>JIS</th><th>EN</th></tr></thead>
+          <tbody>
+            <tr><td class="hi">Pipe</td><td>B36.10M</td><td>GB/T 17395</td><td>B2311</td><td>EN 10220</td></tr>
+            <tr><td class="hi">Elbow</td><td>B16.9</td><td>GB/T 12459</td><td>B2311</td><td>EN 10253-2</td></tr>
+            <tr><td class="hi">Reducer</td><td>B16.9</td><td>GB/T 12459</td><td>B2311</td><td>EN 10253-2</td></tr>
+            <tr><td class="hi">Tee</td><td>B16.9</td><td>GB/T 12459</td><td>B2311</td><td>EN 10253-2</td></tr>
+            <tr><td class="hi">Cap</td><td>B16.9</td><td>GB/T 12459</td><td>B2311</td><td>EN 10253-2</td></tr>
+            <tr><td class="hi">Flange</td><td>B16.5</td><td>GB/T 9113</td><td>B2220</td><td>EN 1092-1</td></tr>
+            <tr><td class="hi">Valve</td><td>B16.34</td><td>GB/T 12224</td><td>B2071</td><td>EN 13709</td></tr>
+            <tr><td class="hi">Coupling</td><td>B16.11</td><td>GB/T 14383</td><td>B2316</td><td>EN 10241</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Flange interchangeability -->
+      <div class="ref-card">
+        <div class="ref-card-hd">
+          <div class="dot" style="background:#d4a74a"></div>
+          <div class="ref-card-title">Flange bolt circle comparison (DN100)</div>
+          <div class="ref-card-sub">Class 150 / PN 20 — NOT interchangeable</div>
+        </div>
+        <table class="ref-tbl">
+          <thead><tr><th>Standard</th><th>PCD (mm)</th><th>Bolts</th><th>Bolt size</th></tr></thead>
+          <tbody>
+            <tr><td class="hi">ASME B16.5 Cl.150</td><td>190.5</td><td>8</td><td>M16 / 5/8"</td></tr>
+            <tr><td class="hi">JIS B2220 10K</td><td>175</td><td>8</td><td>M16</td></tr>
+            <tr><td class="warn">EN 1092-1 PN16</td><td>180</td><td>8</td><td>M16</td></tr>
+            <tr><td class="hi">GB/T 9113 PN20</td><td>190</td><td>8</td><td>M16</td></tr>
+            <tr><td colspan="4" style="color:var(--cj-tx);font-size:10px;text-align:center;padding:6px">PCD differs — adapter rings required when mixing standards</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- end ref-grid -->
+  </div><!-- end ref-section -->
+
+</div><!-- end page -->
+
+<footer>PipingStd v1.0 &nbsp;·&nbsp; Reference only — always verify against applicable code and project specification &nbsp;·&nbsp; ASME / GB / JIS / DIN EN / ISO</footer>
+
+<script>
+(function(){
+
+var CATS=[
+  {id:"pipe",label:"Pipe",icon:"⌀"},
+  {id:"valve",label:"Valve",icon:"◈"},
+  {id:"elbow",label:"Elbow",icon:"↱"},
+  {id:"reducer",label:"Reducer",icon:"⊃"},
+  {id:"flange",label:"Flange",icon:"◉"},
+  {id:"tee",label:"Tee",icon:"⊤"},
+  {id:"threeway",label:"3-way valve",icon:"⋈"},
+  {id:"cap",label:"Cap / plug",icon:"⊣"},
+  {id:"coupling",label:"Coupling",icon:"⊂⊃"}
+];
+
+var NPS={15:"1/2",20:"3/4",25:"1",32:"1-1/4",40:"1-1/2",50:"2",65:"2-1/2",80:"3",100:"4",125:"5",150:"6",200:"8",250:"10",300:"12",350:"14",400:"16",450:"18",500:"20",600:"24"};
+var OD_MAP={15:21.3,20:26.7,25:33.4,32:42.2,40:48.3,50:60.3,65:73.0,80:88.9,100:114.3,125:141.3,150:168.3,200:219.1,250:273.1,300:323.8,350:355.6,400:406.4,450:457.0,500:508.0,600:610.0};
+var PIPE_T={
+  15:{SCH5:.165,SCH10:.109,SCH40:.109,SCH80:.147},
+  20:{SCH5:.165,SCH10:.109,SCH40:.113,SCH80:.154},
+  25:{SCH5:.165,SCH10:.109,SCH40:.133,SCH80:.179},
+  32:{SCH5:.165,SCH10:.109,SCH40:.140,SCH80:.191},
+  40:{SCH5:.165,SCH10:.109,SCH40:.145,SCH80:.200},
+  50:{SCH5:.109,SCH10:.109,SCH40:.154,SCH80:.219},
+  65:{SCH5:.109,SCH10:.120,SCH40:.203,SCH80:.276},
+  80:{SCH5:.109,SCH10:.120,SCH40:.216,SCH80:.300,SCH160:.438},
+  100:{SCH5:.109,SCH10:.120,SCH20:.156,SCH40:.237,SCH60:.281,SCH80:.337,SCH120:.438,SCH160:.594},
+  125:{SCH5:.109,SCH10:.125,SCH40:.250,SCH80:.375},
+  150:{SCH5:.109,SCH10:.134,SCH20:.188,SCH40:.280,SCH80:.432,SCH120:.562,SCH160:.719},
+  200:{SCH5:.109,SCH10:.148,SCH20:.218,SCH40:.344,SCH60:.406,SCH80:.500,SCH120:.688,SCH160:.812},
+  250:{SCH5:.134,SCH10:.165,SCH20:.250,SCH40:.365,SCH60:.500,SCH80:.594,SCH120:.844,SCH160:1.000},
+  300:{SCH5:.156,SCH10:.165,SCH20:.250,SCH40:.375,SCH60:.500,SCH80:.625,SCH120:.875,SCH160:1.125},
+  350:{SCH5:.156,SCH10:.188,SCH20:.250,SCH40:.375,SCH60:.500,SCH80:.625},
+  400:{SCH5:.156,SCH10:.188,SCH20:.250,SCH40:.375,SCH60:.500,SCH80:.625},
+  450:{SCH5:.156,SCH10:.188,SCH20:.250,SCH40:.375,SCH60:.500,SCH80:.625},
+  500:{SCH5:.156,SCH10:.188,SCH20:.250,SCH40:.375,SCH60:.500,SCH80:.625},
+  600:{SCH5:.156,SCH10:.188,SCH20:.250,SCH40:.375,SCH60:.500,SCH80:.625}
+};
+var SCH_LBL={SCH5:"5/5S",SCH10:"10/10S",SCH20:"20",SCH30:"30",SCH40:"40 (STD)",SCH60:"60",SCH80:"80 (XS)",SCH100:"100",SCH120:"120",SCH160:"160",XXS:"XXS"};
+var CL_PN={150:"PN 20",300:"PN 50",600:"PN 110",900:"PN 150",1500:"PN 260",2500:"PN 420"};
+var MDATA={
+  A105:{name:"A105",gb:"GB/T 12228 20# / Q235",jis:"JIS G3202 SFVC2A",din:"EN 10222-2 P250GH",iso:"ISO 7005-1 P250GH"},
+  A216WCB:{name:"A216 WCB",gb:"GB/T 12229 WCB",jis:"JIS G5151 SCPH2",din:"EN 10213 GP240GH",iso:"ISO 7005-1 GP240GH"},
+  SA106B:{name:"SA-106 Gr.B",gb:"GB 8163 / 20G",jis:"JIS G3454 STPG410",din:"EN 10216-1 P265GH",iso:"ISO 9329-2 P265"},
+  A335P11:{name:"A335 P11",gb:"GB 5310 15CrMo",jis:"JIS G3458 STPA23",din:"EN 10216-2 13CrMo4-5",iso:"ISO 9329-4 13CrMo4-5"},
+  A335P22:{name:"A335 P22",gb:"GB 5310 12Cr2Mo",jis:"JIS G3458 STPA24",din:"EN 10216-2 10CrMo9-10",iso:"ISO 9329-4 10CrMo9-10"},
+  A335P91:{name:"A335 P91",gb:"GB 5310 10Cr9Mo1VNbN",jis:"JIS G3458 STPA28",din:"EN 10216-2 X10CrMoVNb9-1",iso:"ISO 9329-4 X10CrMoVNb9-1"},
+  A182F304:{name:"A182 F304",gb:"GB/T 12228 0Cr18Ni9",jis:"JIS G3214 SUSF304",din:"EN 10222-5 X5CrNi18-10",iso:"ISO 7005-1 X5CrNi18-10"},
+  A182F316:{name:"A182 F316",gb:"GB/T 12228 0Cr17Ni12Mo2",jis:"JIS G3214 SUSF316",din:"EN 10222-5 X5CrNiMo17-12-2",iso:"ISO 7005-1 X5CrNiMo17-12-2"},
+  A312TP304:{name:"A312 TP304",gb:"GB/T 14976 0Cr18Ni9",jis:"JIS G3459 SUS304TP",din:"EN 10216-5 X5CrNi18-10",iso:"ISO 1127 X5CrNi18-10"},
+  A312TP316:{name:"A312 TP316",gb:"GB/T 14976 0Cr17Ni12Mo2",jis:"JIS G3459 SUS316TP",din:"EN 10216-5 X5CrNiMo17-12-2",iso:"ISO 1127 X5CrNiMo17-12-2"}
+};
+
+// Build DN/NPS reference table
+var dnRows="";
+var dnList=[15,20,25,32,40,50,65,80,100,125,150,200,250,300,350,400,450,500,600];
+for(var i=0;i<dnList.length;i++){
+  var d=dnList[i];var o=OD_MAP[d];
+  dnRows+='<tr><td class="hi">DN '+d+'</td><td>NPS '+NPS[d]+'"</td><td>'+o+'</td><td>'+(o/25.4).toFixed(3)+'"</td></tr>';
+}
+document.getElementById("refDnNps").innerHTML=dnRows;
+
+function dnOpts(pfx){
+  var s='<option value="">'+pfx+'</option>';
+  for(var i=0;i<dnList.length;i++){var d=dnList[i];s+='<option value="'+d+'">DN'+d+' / NPS '+NPS[d]+'"</option>';}
+  return s;
+}
+function schOpts(pfx){
+  var a=[["SCH5","SCH 5"],["SCH10","SCH 10"],["SCH20","SCH 20"],["SCH30","SCH 30"],["SCH40","SCH 40 (STD)"],["SCH60","SCH 60"],["SCH80","SCH 80 (XS)"],["SCH100","SCH 100"],["SCH120","SCH 120"],["SCH160","SCH 160"],["XXS","XXS"]];
+  var s='<option value="">'+(pfx||"— Sch —")+'</option>';
+  for(var i=0;i<a.length;i++) s+='<option value="'+a[i][0]+'">'+a[i][1]+'</option>';
+  return s;
+}
+function clOpts(){return '<option value="">— Pressure class —</option><option value="150">Class 150</option><option value="300">Class 300</option><option value="600">Class 600</option><option value="900">Class 900</option><option value="1500">Class 1500</option><option value="2500">Class 2500</option>';}
+function matOpts(){
+  return '<option value="">— Material —</option>'
+    +'<optgroup label="Carbon steel"><option value="A105">A105 (forged)</option><option value="A216WCB">A216 WCB (cast)</option><option value="SA106B">SA-106 Gr.B</option></optgroup>'
+    +'<optgroup label="Alloy / Cr-Mo"><option value="A335P11">A335 P11</option><option value="A335P22">A335 P22</option><option value="A335P91">A335 P91</option></optgroup>'
+    +'<optgroup label="Stainless"><option value="A182F304">A182 F304</option><option value="A182F316">A182 F316</option><option value="A312TP304">A312 TP304</option><option value="A312TP316">A312 TP316</option></optgroup>';
+}
+function typeOpts(cat){
+  var map={
+    valve:'<option value="">— Valve type —</option><option value="Gate">Gate</option><option value="Globe">Globe</option><option value="Ball">Ball</option><option value="Check">Check</option><option value="Butterfly">Butterfly</option><option value="Needle">Needle</option>',
+    elbow:'<option value="">— Elbow type —</option><option value="90 LR">90° Long radius</option><option value="90 SR">90° Short radius</option><option value="45 LR">45° Long radius</option>',
+    reducer:'<option value="">— Reducer type —</option><option value="Concentric">Concentric</option><option value="Eccentric">Eccentric</option>',
+    flange:'<option value="">— Flange type —</option><option value="Weld neck">Weld neck</option><option value="Slip-on">Slip-on</option><option value="Blind">Blind</option><option value="Socket weld">Socket weld</option><option value="Threaded">Threaded</option><option value="Lap joint">Lap joint</option>',
+    tee:'<option value="">— Tee type —</option><option value="Equal">Equal tee</option><option value="Reducing">Reducing tee</option>',
+    threeway:'<option value="">— Port type —</option><option value="L-port (diverting)">L-port (diverting)</option><option value="T-port (mixing)">T-port (mixing)</option>',
+    cap:'<option value="">— Type —</option><option value="Cap">Cap</option><option value="Plug">Plug</option>',
+    coupling:'<option value="">— Coupling type —</option><option value="Full coupling">Full coupling</option><option value="Half coupling">Half coupling</option><option value="Reducing coupling">Reducing coupling</option>'
+  };
+  return map[cat]||'';
+}
+function fld(id,lbl,opts){return '<div class="field"><label for="'+id+'">'+lbl+'</label><select id="'+id+'">'+opts+'</select></div>';}
+function secDiv(txt){return '<div class="sec-divider"><span>'+txt+'</span></div>';}
+
+var currentCat="pipe";
+
+function setCat(id){
+  currentCat=id;
+  document.querySelectorAll(".cat-btn").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-id")===id);});
+  var h="";
+  if(id==="reducer"){
+    h+=secDiv("Inlet — large end");
+    h+=fld("f_dn","Inlet DN / NPS",dnOpts("— Inlet DN —"));
+    h+=fld("f_sch","Inlet schedule",schOpts("— Inlet Sch —"));
+    h+=secDiv("Outlet — small end");
+    h+=fld("f_dn2","Outlet DN / NPS",dnOpts("— Outlet DN —"));
+    h+=fld("f_sch2","Outlet schedule",schOpts("— Outlet Sch —"));
+    h+=secDiv("General");
+    h+=fld("f_type","Type",typeOpts("reducer"));
+    h+=fld("f_mat","Material",matOpts());
+  } else {
+    var needSch=(id==="pipe"||id==="elbow"||id==="tee"||id==="cap"||id==="coupling");
+    var needCl=(id==="valve"||id==="flange"||id==="threeway");
+    var needType=(id!=="pipe");
+    h+=fld("f_dn","Nominal size (DN / NPS)",dnOpts("— DN / NPS —"));
+    if(needSch) h+=fld("f_sch","Schedule",schOpts());
+    if(needCl)  h+=fld("f_cl","Pressure class",clOpts());
+    if(needType)h+=fld("f_type","Type",typeOpts(id));
+    h+=fld("f_mat","Material",matOpts());
+  }
+  h+='<div class="btn-group"><button class="btn-go" onclick="runTable()">Compare</button><button class="btn-rst" onclick="resetOut()">Reset</button></div>';
+  document.getElementById("ctrlRow").innerHTML=h;
+  document.getElementById("out").innerHTML='<div class="hint">&#9432; Fill in the parameters above and click Compare.</div>';
+}
+
+function gv(id){var el=document.getElementById(id);return el?el.value:"";}
+function nearGB(t){var s=[2,2.5,3,3.5,4,4.5,5,5.5,6,7,8,9,10,11,12,13,14,15,16,18,20,22,25,28,30,32,36,40],b=s[0],d=999;for(var i=0;i<s.length;i++){var x=Math.abs(s[i]-t);if(x<d){d=x;b=s[i];}}return b;}
+function nearDIN(t){var s=[1.6,2,2.3,2.6,2.9,3.2,3.6,4,4.5,5,5.6,6.3,7.1,8,9,10,11,12.5,14.2,16,17.5,20,22.2,25,28,32,36,40],b=s[0],d=999;for(var i=0;i<s.length;i++){var x=Math.abs(s[i]-t);if(x<d){d=x;b=s[i];}}return{w:b,s:Math.abs(b-t)>1?"EN 10220 S2":"EN 10220 S1"};}
+function gbSer(t){if(t<=4)return"Series 1";if(t<=8)return"Series 2";if(t<=14)return"Series 3";if(t<=22)return"Series 4";return"Series 5";}
+function bdg(a,b){var d=Math.abs(parseFloat(a)-parseFloat(b));var c=d<0.3?"b-match":d<1?"b-near":"b-check";var l=d<0.3?"match":d<1?"~near":"check";return '<span class="badge '+c+'">'+l+'</span>';}
+function wallInfo(dn,sch){var tin=(PIPE_T[dn]||{})[sch];if(!tin)return null;var t=parseFloat((tin*25.4).toFixed(2));var od=OD_MAP[dn]||0;return{t:t,od:od,id:parseFloat((od-2*t).toFixed(1)),tin:tin};}
+
+function legHtml(){
+  return '<div class="legend">'
+    +'<div class="leg-i"><div class="leg-d" style="background:#1a3260"></div><span style="color:#4f8ef7">ANSI / ASME</span></div>'
+    +'<div class="leg-i"><div class="leg-d" style="background:#1a3825"></div><span style="color:#4aab70">GB (China)</span></div>'
+    +'<div class="leg-i"><div class="leg-d" style="background:#4a2214"></div><span style="color:#d4654a">JIS (Japan)</span></div>'
+    +'<div class="leg-i"><div class="leg-d" style="background:#2d1c6a"></div><span style="color:#7c6cd4">DIN EN (Europe)</span></div>'
+    +'<div class="leg-i"><div class="leg-d" style="background:#4a320a"></div><span style="color:#c08a20">ISO</span></div>'
+    +'</div>';
+}
+function theadHtml(){
+  return '<thead><tr><th class="rl">Parameter</th>'
+    +'<th class="ca">ANSI / ASME</th><th class="cg">GB (China)</th>'
+    +'<th class="cj">JIS (Japan)</th><th class="cd">DIN EN (Europe)</th>'
+    +'<th class="ci">ISO</th></tr></thead>';
+}
+function tr(l,a,g,j,d,i){
+  return '<tr><td class="rl">'+l+'</td>'
+    +'<td class="ca">'+a+'</td><td class="cg">'+g+'</td>'
+    +'<td class="cj">'+j+'</td><td class="cd">'+d+'</td>'
+    +'<td class="ci">'+i+'</td></tr>';
+}
+function trSec(label){return '<tr class="sec-row"><td colspan="6">'+label+'</td></tr>';}
+function mkTbl(rows,note,prefix){
+  return (prefix||'')+legHtml()
+    +'<div class="tbl-wrap"><table>'+theadHtml()+'<tbody>'+rows+'</tbody></table></div>'
+    +(note?'<p class="note">'+note+'</p>':'');
+}
+
+window.runTable=function(){
+  var cat=currentCat, out=document.getElementById("out");
+  var dn=parseInt(gv("f_dn"))||0, sch=gv("f_sch"), cl=gv("f_cl"), type=gv("f_type")||"—", mat=gv("f_mat");
+
+  if(cat==="reducer"){
+    var dn1=parseInt(gv("f_dn"))||0, sch1=gv("f_sch");
+    var dn2=parseInt(gv("f_dn2"))||0, sch2=gv("f_sch2");
+    type=gv("f_type")||"—"; mat=gv("f_mat");
+    if(!dn1||!dn2||!sch1||!sch2||!mat){out.innerHTML='<div class="hint">&#9888; Please fill in all fields — inlet DN, inlet schedule, outlet DN, outlet schedule, type, and material.</div>';return;}
+    if(dn2>=dn1){out.innerHTML='<div class="hint">&#9888; Outlet DN must be smaller than inlet DN.</div>';return;}
+    var w1=wallInfo(dn1,sch1), w2=wallInfo(dn2,sch2);
+    if(!w1){out.innerHTML='<div class="hint">&#9888; '+SCH_LBL[sch1]+' not available for DN'+dn1+'.</div>';return;}
+    if(!w2){out.innerHTML='<div class="hint">&#9888; '+SCH_LBL[sch2]+' not available for DN'+dn2+'.</div>';return;}
+    var m=MDATA[mat], nps1=NPS[dn1], nps2=NPS[dn2];
+    var gbw1=nearGB(w1.t), gbw2=nearGB(w2.t), din1=nearDIN(w1.t), din2=nearDIN(w2.t);
+    var sc='<div class="sc-row">'
+      +'<div class="sc"><div class="sc-l">Inlet OD</div><div class="sc-v">'+w1.od+' mm</div><div class="sc-s">DN'+dn1+' / NPS '+nps1+'"</div></div>'
+      +'<div class="sc"><div class="sc-l">Inlet wall</div><div class="sc-v">'+w1.t+' mm</div><div class="sc-s">'+w1.tin.toFixed(3)+'" · '+SCH_LBL[sch1]+'</div></div>'
+      +'<div class="sc"><div class="sc-l">Outlet OD</div><div class="sc-v">'+w2.od+' mm</div><div class="sc-s">DN'+dn2+' / NPS '+nps2+'"</div></div>'
+      +'<div class="sc"><div class="sc-l">Outlet wall</div><div class="sc-v">'+w2.t+' mm</div><div class="sc-s">'+w2.tin.toFixed(3)+'" · '+SCH_LBL[sch2]+'</div></div>'
+      +'</div>';
+    var rows="";
+    rows+=tr("Fitting standard","ASME B16.9","GB/T 12459","JIS B2311","EN 10253-2","ISO 3419");
+    rows+=tr("Type",type,type,type,type,type);
+    rows+=trSec("Inlet (large end) — DN"+dn1+" / NPS "+nps1+'"');
+    rows+=tr("Inlet DN / NPS","NPS "+nps1+'" / DN'+dn1,"DN "+dn1,"A"+dn1,"DN "+dn1,"DN "+dn1);
+    rows+=tr("Inlet schedule",SCH_LBL[sch1],gbSer(w1.t),"Sch "+sch1.replace("SCH",""),din1.s,"—");
+    rows+=tr("Inlet OD",w1.od+" mm",w1.od+" mm",w1.od+" mm",w1.od+" mm",w1.od+" mm");
+    rows+='<tr><td class="rl">Inlet wall (t)</td><td class="ca">'+w1.t+' mm</td><td class="cg">'+gbw1+' mm'+bdg(gbw1,w1.t)+'</td><td class="cj">'+w1.t+' mm'+bdg(w1.t,w1.t)+'</td><td class="cd">'+din1.w+' mm'+bdg(din1.w,w1.t)+'</td><td class="ci">'+w1.t+' mm'+bdg(w1.t,w1.t)+'</td></tr>';
+    rows+=tr("Inlet ID",w1.id+" mm",w1.id+" mm",w1.id+" mm",w1.id+" mm",w1.id+" mm");
+    rows+=trSec("Outlet (small end) — DN"+dn2+" / NPS "+nps2+'"');
+    rows+=tr("Outlet DN / NPS","NPS "+nps2+'" / DN'+dn2,"DN "+dn2,"A"+dn2,"DN "+dn2,"DN "+dn2);
+    rows+=tr("Outlet schedule",SCH_LBL[sch2],gbSer(w2.t),"Sch "+sch2.replace("SCH",""),din2.s,"—");
+    rows+=tr("Outlet OD",w2.od+" mm",w2.od+" mm",w2.od+" mm",w2.od+" mm",w2.od+" mm");
+    rows+='<tr><td class="rl">Outlet wall (t)</td><td class="ca">'+w2.t+' mm</td><td class="cg">'+gbw2+' mm'+bdg(gbw2,w2.t)+'</td><td class="cj">'+w2.t+' mm'+bdg(w2.t,w2.t)+'</td><td class="cd">'+din2.w+' mm'+bdg(din2.w,w2.t)+'</td><td class="ci">'+w2.t+' mm'+bdg(w2.t,w2.t)+'</td></tr>';
+    rows+=tr("Outlet ID",w2.id+" mm",w2.id+" mm",w2.id+" mm",w2.id+" mm",w2.id+" mm");
+    rows+=trSec("Overall");
+    rows+=tr("Overall length","B16.9 table","GB/T 12459 table","JIS B2311 table","EN 10253 table","ISO 3419 table");
+    rows+=tr("Material std","ASTM / ASME","GB/T 12459","JIS G-series","DIN EN 10216","ISO 9329");
+    rows+=tr("Material equiv.",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"Wall badge: match = ±0.3 mm  |  ~near = ±1 mm  |  check = verify with supplier.",sc);
+    return;
+  }
+
+  if(!dn||!mat){out.innerHTML='<div class="hint">&#9888; Please select at least size and material.</div>';return;}
+  var nps=NPS[dn]||dn, od=OD_MAP[dn]||0, m=MDATA[mat];
+  if(!m){out.innerHTML='<div class="hint">&#9888; Material not found.</div>';return;}
+  var rows="";
+
+  if(cat==="pipe"){
+    if(!sch){out.innerHTML='<div class="hint">&#9888; Please select a schedule.</div>';return;}
+    var ww=wallInfo(dn,sch);
+    if(!ww){out.innerHTML='<div class="hint">&#9888; '+SCH_LBL[sch]+' not available for DN'+dn+'.</div>';return;}
+    var gbw=nearGB(ww.t), dinR=nearDIN(ww.t);
+    var sc='<div class="sc-row">'
+      +'<div class="sc"><div class="sc-l">OD</div><div class="sc-v">'+ww.od+' mm</div><div class="sc-s">'+(ww.od/25.4).toFixed(3)+'"</div></div>'
+      +'<div class="sc"><div class="sc-l">Wall (t)</div><div class="sc-v">'+ww.t+' mm</div><div class="sc-s">'+ww.tin.toFixed(3)+'"</div></div>'
+      +'<div class="sc"><div class="sc-l">ID</div><div class="sc-v">'+ww.id+' mm</div><div class="sc-s">'+(ww.id/25.4).toFixed(3)+'"</div></div>'
+      +'<div class="sc"><div class="sc-l">Schedule</div><div class="sc-v">'+SCH_LBL[sch]+'</div><div class="sc-s">'+m.name+'</div></div>'
+      +'</div>';
+    rows+=tr("Pipe standard","ASME B36.10M","GB/T 17395","JIS B2311","EN 10220","ISO 4200");
+    rows+=tr("Nominal size","NPS "+nps+'" / DN'+dn,"DN "+dn,"A"+dn+" (JIS)","DN "+dn,"DN "+dn);
+    rows+=tr("Schedule / series",SCH_LBL[sch],gbSer(ww.t),SCH_LBL[sch],dinR.s,"— (OD x t)");
+    rows+=tr("OD",ww.od+" mm",ww.od+" mm",ww.od+" mm",ww.od+" mm",ww.od+" mm");
+    rows+='<tr><td class="rl">Wall thickness</td><td class="ca">'+ww.t+' mm</td><td class="cg">'+gbw+' mm'+bdg(gbw,ww.t)+'</td><td class="cj">'+ww.t+' mm'+bdg(ww.t,ww.t)+'</td><td class="cd">'+dinR.w+' mm'+bdg(dinR.w,ww.t)+'</td><td class="ci">'+ww.t+' mm'+bdg(ww.t,ww.t)+'</td></tr>';
+    rows+=tr("ID",ww.id+" mm",ww.id+" mm",ww.id+" mm",ww.id+" mm",ww.id+" mm");
+    rows+=tr("Material std","ASTM / ASME","GB/T 17395","JIS G-series","DIN EN 10216","ISO 9329");
+    rows+=tr("Material equiv.",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"Wall badge: match = ±0.3 mm  |  ~near = ±1 mm  |  check = verify with supplier.",sc);
+
+  } else if(cat==="valve"||cat==="threeway"){
+    if(!cl){out.innerHTML='<div class="hint">&#9888; Please select a pressure class.</div>';return;}
+    var pn=CL_PN[cl]||"—";
+    rows+=tr("Design standard","ASME B16.34","GB/T 12224","JIS B2071","EN 13709","ISO 10434");
+    rows+=tr("Nominal size","NPS "+nps+'"',"DN "+dn,"A"+dn,"DN "+dn,"DN "+dn);
+    rows+=tr("Pressure class","Class "+cl,pn+" (approx)","JIS 10K–63K",pn,pn);
+    rows+=tr("Type",type,type,type,type,type);
+    rows+=tr("Face-to-face","ASME B16.10","GB/T 12221","JIS B2002","EN 558","ISO 5752");
+    rows+=tr("Flange drilling","ASME B16.5","GB/T 9113","JIS B2220","EN 1092-1","ISO 7005-1");
+    rows+=tr("End connection","BW / SW / THRD","BW / SW / THRD","BW / SW / THRD","BW / SW / THRD","BW / SW / THRD");
+    rows+=tr("Body material",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"Class/PN equivalency is approximate — verify P-T ratings per ASME B16.34 Table 2 and EN 13709.");
+
+  } else if(cat==="elbow"){
+    if(!sch){out.innerHTML='<div class="hint">&#9888; Please select a schedule.</div>';return;}
+    var r=type==="90 SR"?"1.0D":"1.5D";
+    rows+=tr("Fitting standard","ASME B16.9","GB/T 12459","JIS B2311","EN 10253-2","ISO 3419");
+    rows+=tr("Nominal size","NPS "+nps+'"',"DN "+dn,"A"+dn,"DN "+dn,"DN "+dn);
+    rows+=tr("Schedule",SCH_LBL[sch],gbSer(0),"Sch "+sch.replace("SCH",""),"EN series","—");
+    rows+=tr("Type",type,type,type,type,type);
+    rows+=tr("Bend radius",r,r,r,r,r);
+    rows+=tr("OD (pipe end)",od+" mm",od+" mm",od+" mm",od+" mm",od+" mm");
+    rows+=tr("Center-to-face","B16.9 table","GB/T 12459 table","JIS B2311 table","EN 10253 table","ISO 3419 table");
+    rows+=tr("Material equiv.",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"Center-to-face dimensions differ per standard — always verify against applicable table.");
+
+  } else if(cat==="flange"){
+    if(!cl){out.innerHTML='<div class="hint">&#9888; Please select a pressure class.</div>';return;}
+    var pn=CL_PN[cl]||"—";
+    rows+=tr("Flange standard","ASME B16.5","GB/T 9113","JIS B2220","EN 1092-1","ISO 7005-1");
+    rows+=tr("Nominal size","NPS "+nps+'"',"DN "+dn,"A"+dn,"DN "+dn,"DN "+dn);
+    rows+=tr("Pressure class","Class "+cl,pn+" (approx)","JIS 10K–63K",pn,pn);
+    rows+=tr("Type",type,type,type,type,type);
+    rows+=tr("Facing","RF / RTJ / FF","RF / FF","RF / FF","RF / FF / GF","RF / FF");
+    rows+=tr("Bolt circle","B16.5 table","GB/T 9113 table","JIS B2220 table","EN 1092-1 table","ISO 7005-1 table");
+    rows+=tr("Flange OD","B16.5 table","GB/T 9113 table","JIS B2220 table","EN 1092-1 table","ISO 7005-1 table");
+    rows+=tr("Material equiv.",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"Bolt circle and flange OD differ between ANSI, JIS, and EN — NOT directly interchangeable across standards.");
+
+  } else if(cat==="tee"){
+    if(!sch){out.innerHTML='<div class="hint">&#9888; Please select a schedule.</div>';return;}
+    rows+=tr("Fitting standard","ASME B16.9","GB/T 12459","JIS B2311","EN 10253-2","ISO 3419");
+    rows+=tr("Nominal size","NPS "+nps+'"',"DN "+dn,"A"+dn,"DN "+dn,"DN "+dn);
+    rows+=tr("Schedule",SCH_LBL[sch],gbSer(0),"Sch "+sch.replace("SCH",""),"EN series","—");
+    rows+=tr("Type",type,type,type,type,type);
+    rows+=tr("Run OD",od+" mm",od+" mm",od+" mm",od+" mm",od+" mm");
+    rows+=tr("Center-to-end","B16.9 table","GB/T 12459 table","JIS B2311 table","EN 10253 table","ISO 3419 table");
+    rows+=tr("Material equiv.",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"Reducing tee: branch DN must be specified separately.");
+
+  } else if(cat==="cap"){
+    if(!sch){out.innerHTML='<div class="hint">&#9888; Please select a schedule.</div>';return;}
+    rows+=tr("Fitting standard","ASME B16.9 / B16.11","GB/T 12459","JIS B2311","EN 10253-2","ISO 3419");
+    rows+=tr("Nominal size","NPS "+nps+'"',"DN "+dn,"A"+dn,"DN "+dn,"DN "+dn);
+    rows+=tr("Schedule",SCH_LBL[sch],gbSer(0),"Sch "+sch.replace("SCH",""),"EN series","—");
+    rows+=tr("Type",type,type,type,type,type);
+    rows+=tr("OD",od+" mm",od+" mm",od+" mm",od+" mm",od+" mm");
+    rows+=tr("Length","B16.9 table","GB/T 12459 table","JIS B2311 table","EN 10253 table","ISO 3419 table");
+    rows+=tr("Material equiv.",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"");
+
+  } else if(cat==="coupling"){
+    if(!sch){out.innerHTML='<div class="hint">&#9888; Please select a schedule.</div>';return;}
+    rows+=tr("Fitting standard","ASME B16.11","GB/T 14383","JIS B2316","EN 10241","ISO 4144");
+    rows+=tr("Nominal size","NPS "+nps+'"',"DN "+dn,"A"+dn,"DN "+dn,"DN "+dn);
+    rows+=tr("Schedule",SCH_LBL[sch],gbSer(0),"Sch "+sch.replace("SCH",""),"EN series","—");
+    rows+=tr("Type",type,type,type,type,type);
+    rows+=tr("OD",od+" mm",od+" mm",od+" mm",od+" mm",od+" mm");
+    rows+=tr("End connection","SW / THRD","SW / THRD","SW / THRD","SW / THRD","SW / THRD");
+    rows+=tr("Material equiv.",m.name,m.gb,m.jis,m.din,m.iso);
+    out.innerHTML=mkTbl(rows,"");
+  }
+};
+
+window.resetOut=function(){
+  document.getElementById("out").innerHTML='<div class="hint">&#9432; Fill in the parameters above and click Compare.</div>';
+  document.querySelectorAll("#ctrlRow select").forEach(function(s){s.value="";});
+};
+
+// Build category buttons
+var strip=document.getElementById("catStrip");
+CATS.forEach(function(c){
+  var b=document.createElement("button");
+  b.className="cat-btn";
+  b.setAttribute("data-id",c.id);
+  b.innerHTML='<span class="icon">'+c.icon+'</span>'+c.label;
+  b.onclick=function(){setCat(c.id);};
+  strip.appendChild(b);
+});
+setCat("pipe");
+
+})();
+</script>
+</body>
+</html>
